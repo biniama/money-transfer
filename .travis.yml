@@ -1,0 +1,17 @@
+sudo: required
+language: groovy
+jdk:
+- oraclejdk8
+branches:
+  only:
+  - master
+before_script:
+- chmod +x grailsw
+script: ./grailsw clean && ./grailsw refresh-dependencies && ./grailsw test-app --stacktrace
+deploy:
+  provider: heroku
+  api_key:
+    secure: kq7eF2hmhu3xPB7ePzOh5qF8IR5Gi4cOCPQ3ayL22FL9KbM8IRblAeQkPwO/1PBU/WXPieIEkou0hOrrYF3EdWRlMS2Ch0yOfQP2fdgmuwvjhsAXCOyVYLqYwI845RN5RbaOQTlB8UyRiOwdmphgp5q23s3iRu+FY8cWr63YAUpX8i8PKvNZi3qcLs2+X6QphiEmpHVAeh01j+FtLmeimPAHSkkoSskkQC/EdVBjUX6jirm3iu9PyUVgSGwPBkTM2k4hcqzFmkfn/TBUKMRbfDo+Eft8oQ9edKl3jCZiKJSUhDsre7IGkns+qC/MOK+x9Wq+k6J4gyuMyDIlZg427lFu3lhhhZaUBK69n1JP4ktGr3rygGwLs09SEVE3YJGSDzaN6XDpe2ZSGsfKU1uml56Z1lsmWqbljkO3IV2mC5AhSO7THeeqi6TrRA+aXlbzcJdBx0V0SlYbEPTDdf3aOHSajcXT3H/a7Df+96WBZjDH6qytcRcoKaGlx3yMps5B/cgutDgscoyWvwpAnI34JXgRzIofb3It3i2kKNsX2Yfrg0zxPFT0Z5tFxsmpERW0dA704DaijrTL2o5awkK9MzEhTsrrYXeULxiVeYG9AaNnsXx/LYxA1+tFD21+8AqrOMvYjEZ4kA02g+iQr1E1y91ttpKsgelD6gicQ7jkGDM=
+  app: secret-money-transfer
+  on:
+    repo: biniama/money-transfer
