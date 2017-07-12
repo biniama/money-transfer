@@ -66,10 +66,13 @@ class TransactionServiceIntegrationTests extends IntegrationSpec {
         when:
             String response = transactionService.transferMoney(account3.id, account2.id, transferAmount)
 
+            Account updatedAccount3 = Account.get(account3.id)
+            Account updatedAccount2 = Account.get(account2.id)
+
         then:
             response
             response.equals("Transfer is successful and users are notified")
-            account3.balance == fromAccountCurrentBalance - transferAmount
-            account2.balance == toAccountCurrentBalance + transferAmount
+            updatedAccount3.balance == fromAccountCurrentBalance - transferAmount
+            updatedAccount2.balance == toAccountCurrentBalance + transferAmount
     }
 }

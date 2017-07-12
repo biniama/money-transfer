@@ -9,7 +9,7 @@ class BootStrap {
         log.debug("Bootstrap is loading ...")
 
         // On Test environment, another data is being setup.
-        if (!Environment.TEST) {
+        if (Environment.current != Environment.TEST) {
 
             Account account1 = new Account(name: "Account 1", balance: 5000.00, emailAddress: "biniamasnake@gmail.com").save(flush: true)
             Account account2 = new Account(name: "Account 2", balance: 21000.00, emailAddress: "biniamasnake@gmail.com").save(flush: true)

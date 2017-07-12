@@ -1,3 +1,5 @@
+import com.icegreen.greenmail.util.ServerSetupTest
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -89,10 +91,32 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+
+        //Green mail config
+        grails.mail.port = ServerSetupTest.SMTP.port
+    }
+    test {
+        //Green mail config
+        grails.mail.port = ServerSetupTest.SMTP.port
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
+
+        grails.plugin.greenmail.disabled=true
+
+        //Grails Mail Plugin Configurations
+        grails {
+            mail {
+                host = "smtp.gmail.com"
+                port = 465
+                username = "secretmoney824@gmail.com"
+                password = "hLn](Nvb[=9w5~P3"
+                props = ["mail.smtp.auth":"true",
+                         "mail.smtp.socketFactory.port":"465",
+                         "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+                         "mail.smtp.socketFactory.fallback":"false"]
+            }
+        }
     }
 }
 
@@ -117,19 +141,3 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
-/**
-  * Grails Mail Plugin Configurations
-  */
-grails {
-    mail {
-        to = 'biny08@gmail.com'
-        host = "smtp.gmail.com"
-        port = 465
-        username = "megan.error@gmail.com"
-        password = "TabascoIsHot"
-        props = ["mail.smtp.auth":"true",
-                 "mail.smtp.socketFactory.port":"465",
-                 "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
-                 "mail.smtp.socketFactory.fallback":"false"]
-    }
-}
