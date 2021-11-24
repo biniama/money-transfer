@@ -2,7 +2,7 @@
 
 # Secret Escapes Money Transfer App
 
-* Travis CI is integrated to run unit and integration tests
+* TravisCI is integrated to run unit and integration tests
 * The app is automatically deployed on Heroku after each commit and successful test.
 
 The app can be accessed [here](https://secret-money-transfer.herokuapp.com/)
